@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="Kiseop Lee">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="OSX에 Brew를 이용해 PHP redis 설치하기"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="늦었지만 꾸준하게"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>OSX에 Brew를 이용해 PHP redis 설치하기 - 늦었지만 꾸준하게</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="늦었지만 꾸준하게" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            OSX에 Brew를 이용해 PHP redis 설치하기
+            
+          </h1>
+          <p class="posted-on">
+          2017-08-06
+          </p>
+          <div class="tags-links">
+            
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h1 id="OSX에-Brew를-이용해-PHP-redis-설치하기"><a href="#OSX에-Brew를-이용해-PHP-redis-설치하기" class="headerlink" title="OSX에 Brew를 이용해 PHP redis 설치하기"></a>OSX에 Brew를 이용해 PHP redis 설치하기</h1><p>맴 캐시로 Redis를 쓰는 것이 있어 redis를 설치해 보았다.<br>문제는 Redis 설치만으로는 잘 되지 않아 찾아보니 두 가지를 확인해야할 필요가 있었다.<br>첫째는 php redis 설치가 잘 되어 extension으로 설정이 잘 되어야 하는 것과<br>두 번째는 redis와 종속적인 extension 설정이 잘 되어야 하는 것이었다.<br>원래 대로면 이 두가지는 brew로 설치 시 한 번에 해결 되어야 하지만 내 Mac에서는 그렇게 되지 않았다.</p>
+<h3 id="우선-brew를-이용해-php-redis-설치를-실행한다"><a href="#우선-brew를-이용해-php-redis-설치를-실행한다" class="headerlink" title="우선 brew를 이용해 php redis 설치를 실행한다."></a>우선 brew를 이용해 php redis 설치를 실행한다.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install php71-redis</div></pre></td></tr></table></figure>
+<p>설치 중 나오는 로그는 아래와 같다<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">==&gt; Installing php71-redis from homebrew/php</div><div class="line">==&gt; Downloading https://homebrew.bintray.com/bottles-php/php71-redis-3.1.2_4.sierra.bott</div><div class="line">######################################################################## 100.0%</div><div class="line">==&gt; Pouring php71-redis-3.1.2_4.sierra.bottle.tar.gz</div><div class="line">==&gt; Using the sandbox</div><div class="line">==&gt; Caveats</div><div class="line">To finish installing redis for PHP 7.1:</div><div class="line">  * /usr/local/etc/php/7.1/conf.d/ext-redis.ini was created,</div><div class="line">    do not forget to remove it upon extension removal.</div><div class="line">  * Validate installation via one of the following methods:</div><div class="line">  *</div><div class="line">  * Using PHP from a webserver:</div><div class="line">  * - Restart your webserver.</div><div class="line">  * - Write a PHP page that calls &quot;phpinfo();&quot;</div><div class="line">  * - Load it in a browser and look for the info on the redis module.</div><div class="line">  * - If you see it, you have been successful!</div><div class="line">  *</div><div class="line">  * Using PHP from the command line:</div><div class="line">  * - Run `php -i &quot;(command-line &apos;phpinfo()&apos;)&quot;`</div><div class="line">  * - Look for the info on the redis module.</div><div class="line">  * - If you see it, you have been successful!</div><div class="line">==&gt; Summary</div><div class="line">/usr/local/Cellar/php71-redis/3.1.2_4: 6 files, 416.9KB</div></pre></td></tr></table></figure></p>
+<p>결과적으로 /usr/local/etc/php/7.1/conf.d/ext-redis.ini 라는 파일을 만들었으며,<br>그 안에 php-redis 사용을 위한 extension 설정을 했다는 내용이다.</p>
+<h4 id="설치가-되었으나-동작하지-않을-때"><a href="#설치가-되었으나-동작하지-않을-때" class="headerlink" title="설치가 되었으나 동작하지 않을 때"></a>설치가 되었으나 동작하지 않을 때</h4><h6 id="아래와-같이-igbinary를-로드할-수-없다며-동작하지-않는-경우가-있다"><a href="#아래와-같이-igbinary를-로드할-수-없다며-동작하지-않는-경우가-있다" class="headerlink" title="아래와 같이 igbinary를 로드할 수 없다며 동작하지 않는 경우가 있다"></a>아래와 같이 igbinary를 로드할 수 없다며 동작하지 않는 경우가 있다</h6><blockquote>
+<p>PHP Warning:  Cannot load module ‘redis’ because required module ‘igbinary’ is not loaded in Unknown on line 0</p>
+<p>Warning: Cannot load module ‘redis’ because required module ‘igbinary’ is not loaded in Unknown on line 0</p>
+</blockquote>
+<p>이 경우 redis를 이용해서 igbinary를 설치해도 이미 설치했다는 메세지만 볼 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Warning: homebrew/php/igbinary 2.0.4 is already installed</div></pre></td></tr></table></figure></p>
+<p>이러한 현상이 발생하는 이유는 결과적으로 igbinary가 설치는 되었으나 extension설정이 되지 않았기 때문이다.<br>따라서 아래와 같이 실제 php에서 바라보는 conf.d 폴더에 extension을 사용하도록 해주면 된다.</p>
+<p>아래의 명령어를 통해 extension 설정 파일을 만들고,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /usr/local/etc/php/7.1/conf.d/ext-igbinary.ini</div></pre></td></tr></table></figure></p>
+<p>아래의 내용을 입력한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[igbinary]</div><div class="line">extension=&quot;/usr/local/opt/php71-igbinary/igbinary.so&quot;</div></pre></td></tr></table></figure></p>
+<p>이제 문제 없이 동작하는 것을 확인할 수 있다.  </p>
+<p>OSX에 Brew를 설치하는 방법은 <a href="/2017/08/06/osx-brew-install/">OSX에  brew설치하기</a>를 참조<br>OSX에 PHP를 설치하는 방법은 <a href="/2017/08/06/osx-brew-php71-install/">OSX에 Brew를 이용해 PHP7.1 설치하기</a>를 참조</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2017/08/06/osx-brew-php71-install/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <ul><li><a href="https://github.com/GallenHu/hexo-theme-Daily">如何自定义这里的内容(配置教程)?</a></li></ul>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/GallenHu" class="icon icon-github" target="_blank">github</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>늦었지만 꾸준하게 &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>
